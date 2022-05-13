@@ -38,9 +38,9 @@ public class App {
      * @param num - число
      * @return значение факториала
      */
-    public static int factorial(int num){
-        if(num == 1) return 1;
-        if(num == 0 ) return 0;
+    public Long factorial(int num){
+        if(num == 1) return 1l;
+        if(num == 0 ) return 0l;
         return num * factorial(num -1);
     }
 
@@ -51,7 +51,7 @@ public class App {
     private static void createFileNums(Path file){
         List<Integer> nums = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            nums.add(new Random().nextInt(50));
+            nums.add(new Random().nextInt(20));
         }
         if(Files.exists(file)) {
             try {
@@ -72,7 +72,7 @@ public class App {
             e.printStackTrace();
         }
     }
-    public static void factorialMultithreading(Path path){
+    public void factorialMultithreading(Path path){
         createFileNums(path);
         Stack<Integer> nums = null;
         try {
@@ -82,17 +82,15 @@ public class App {
         }
         Stack<Integer> finalNums = nums;
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(){
-                public void run(){
-                    synchronized (finalNums){
-                        while (!finalNums.isEmpty()) {
-                            int num = finalNums.pop();
-                            int res = factorial(num);
-                            System.out.printf("Factorial of %d = %d, Thread %s", num, res, Thread.currentThread().getName());
-                        }
-                    }
+            Thread thread = new Thread(() -> {
+               // synchronized (finalNums){
+                    while (!finalNums.isEmpty()) {
+                        int num = finalNums.pop();
+                        Long res = factorial(num);
+                        System.out.printf("Factorial of %d = %d, %s \n", num, res, Thread.currentThread().getName());
+                  //  }
                 }
-            };
+            });
             thread.start();
         }
     }

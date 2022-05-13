@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestTest {
     @Test
     public void test(){
-        App.factorialMultithreading(Paths.get("nums"));
+        App app = new App();
+        app.factorialMultithreading(Paths.get("nums"));
     }
 }
