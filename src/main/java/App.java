@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,9 +15,9 @@ public class App {
 
     /**
      * Получение списка чисел из файла
-     * @param file
-     * @return
-     * @throws FileNotFoundException
+     * @param file путь к файлу
+     * @return очередь чисел
+     * @throws FileNotFoundException если файл не существует
      */
     static Stack<Integer> getNums(Path file) throws FileNotFoundException {
         Stack<Integer> nums = new Stack<>();
@@ -39,8 +38,8 @@ public class App {
      * @return значение факториала
      */
     public Long factorial(int num){
-        if(num == 1) return 1l;
-        if(num == 0 ) return 0l;
+        if(num == 1) return 1L;
+        if(num == 0 ) return 0L;
         return num * factorial(num -1);
     }
 
