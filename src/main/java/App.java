@@ -72,6 +72,11 @@ public class App {
             e.printStackTrace();
         }
     }
+
+    /**
+     * вычисление факториала и вывод на экран
+     * @param path путь к файлу
+     */
     public void factorialMultithreading(Path path){
         createFileNums(path);
         Stack<Integer> nums = null;
